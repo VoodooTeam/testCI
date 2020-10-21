@@ -41,8 +41,21 @@ workflows:
       - test:
          requires: 
            - build
+
+              
+  build-test-deploy:
+    jobs:
+      - build:
          filters:  # using regex filters requires the entire branch to match
            branches:
-             ignore: main
+               only: main
+             
+             
+      - test:
+         requires: 
+           - build
+
               
-              
+      - deploy:
+         requires: 
+           - test
