@@ -32,8 +32,13 @@ jobs:
 workflows:
   build-test:
     jobs:
-      - build
-      - test
+      - build:
          filters:  # using regex filters requires the entire branch to match
-            branches:
-              ignore: main
+           branches:
+             ignore: main
+      - test:
+         filters:  # using regex filters requires the entire branch to match
+           branches:
+             ignore: main
+              
+              
