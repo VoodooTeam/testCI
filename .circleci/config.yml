@@ -5,6 +5,7 @@ version: 2.1
 
 jobs:
 
+
   test: 
 
     macos:
@@ -17,9 +18,15 @@ jobs:
 
     macos:
       xcode: 11.0.0 # Specify the Xcode version to use
-
+      
+    parameters:
+      target:
+        type: string
+        default: "" 
+            
     steps:
-      - checkout
+      - run: echo << parameters.target >>
+
       
   build: 
 
@@ -57,5 +64,6 @@ workflows:
 
               
       - deploy:
+         target: "staging"
          requires: 
            - test
