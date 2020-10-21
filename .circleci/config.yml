@@ -50,7 +50,7 @@ workflows:
            - build
 
               
-  build-test-deploy:
+  build-test-deploy-staging:
     jobs:
       - build:
          filters:  # using regex filters requires the entire branch to match
@@ -67,3 +67,14 @@ workflows:
          target: "staging"
          requires: 
            - test
+           
+  deploy-production:
+    jobs:
+
+      - deploy:
+         filters:  
+           branches:
+             ignore: /.*/
+           
+           tags: 
+             only: /.*/
